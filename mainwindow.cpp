@@ -26,7 +26,7 @@ void MainWindow::testAesCBC()
     m_pMyAesCBC = new MyAesCBC(16, (unsigned char *)"abc123");
 
     // 读取要加密的数据
-    QFile file("D:/code/qt/myAESCBC/debug/test.txt");
+    QFile file("test.txt");
     if (!file.open(QIODevice::ReadOnly))
     {
         QMessageBox::warning(this, "warning", "open file failed");
@@ -42,7 +42,7 @@ void MainWindow::testAesCBC()
 
     // 加密
     int i = m_pMyAesCBC->OnAesEncrypt(srcImage, length, enImage); // i = 加密的数据长度
-    QFile wfile("D:/code/qt/myAESCBC/debug/encryption.txt");
+    QFile wfile("encryption.txt");
     if (!wfile.open(QIODevice::WriteOnly))
     {
         QMessageBox::warning(this, "warning", "can't write enImge");
@@ -54,7 +54,7 @@ void MainWindow::testAesCBC()
     // 解密
     int ii = m_pMyAesCBC->OnAesUncrypt(enImage, i, deImage); // ii = 解密的数据长度
     Q_UNUSED(ii);
-    QFile rfile("D:/code/qt/myAESCBC/debug/decode.txt");
+    QFile rfile("decode.txt");
     if (!rfile.open(QIODevice::WriteOnly))
     {
         QMessageBox::warning(this, "warning", "can't write deImage");
