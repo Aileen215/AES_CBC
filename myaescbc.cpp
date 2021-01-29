@@ -34,7 +34,7 @@ DWORD MyAesCBC::OnAesEncrypt(QByteArray InBuffer, DWORD InLength, QByteArray &Ou
     {
         // 加密最后几个字节
         QByteArray inbuff = InBuffer.right(leftnum);
-        inbuff = inbuff.leftJustified(16, '\0'); // 不足16为, 补'\0'
+        inbuff.resize(16);
         Cipher(inbuff, OutBuffer);
         OutLength += 16;
     }
@@ -43,7 +43,7 @@ DWORD MyAesCBC::OnAesEncrypt(QByteArray InBuffer, DWORD InLength, QByteArray &Ou
     int extranum = 16 + (16 - leftnum) % 16; // 多出16+(16-leftnum)%16个字节
     QByteArray extrabuff;
     extrabuff.setNum(extranum);
-    extrabuff = extrabuff.leftJustified(16, '\0'); // 补足16位
+    extrabuff.resize(16);
     Cipher(extrabuff, OutBuffer);
     OutLength += 16;
     return OutLength;
